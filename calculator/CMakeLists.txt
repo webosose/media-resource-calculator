@@ -24,6 +24,7 @@ set(MEDIA-RESOURCE-CALCULATOR_SRC
     resource_calculator.cpp
     resource_calculator_c.cpp
     video_resource_table.cpp
+    display_resource_table.cpp
     )
 
 set(MEDIA-RESOURCE-CALCULATOR_HEADER
@@ -32,6 +33,7 @@ set(MEDIA-RESOURCE-CALCULATOR_HEADER
     resource_calculator.h
     resource_calculator_c.h
     video_resource_table.h
+    display_resource_table.h
     )
 
 set(LIBS
@@ -44,8 +46,10 @@ if(${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi3" OR ${WEBOS_TARGET_MACHINE} ST
 
   set(ADEC_RESOURCE_JSON ../data/raspberrypi3_adec.json)
   set(VDEC_RESOURCE_JSON ../data/raspberrypi3_vdec.json)
+  set(DISP_RESOURCE_JSON ../data/raspberrypi3_disp.json)
   set(ADEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/adec_resources_raspberrypi3.h)
   set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_raspberrypi3.h)
+  set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_raspberrypi3.h)
 
 elseif(${WEBOS_TARGET_MACHINE} MATCHES "qemux86")
   message("Build resource calculator for qemux86")
@@ -54,8 +58,10 @@ elseif(${WEBOS_TARGET_MACHINE} MATCHES "qemux86")
 
   set(ADEC_RESOURCE_JSON ../data/qemux86_adec.json)
   set(VDEC_RESOURCE_JSON ../data/qemux86_vdec.json)
+  set(DISP_RESOURCE_JSON ../data/qemux86_disp.json)
   set(ADEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/adec_resources_qemux86.h)
   set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_qemux86.h)
+  set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_qemux86.h)
 
 else()
   message("Check the resource calculator json files")
@@ -68,6 +74,9 @@ GENERATE_RESOURCE_HEADER(ADEC_RESOURCE
 GENERATE_RESOURCE_HEADER(VDEC_RESOURCE
                          ${VDEC_RESOURCE_JSON}
                          ${VDEC_RESOURCE_HEADER})
+GENERATE_RESOURCE_HEADER(DISP_RESOURCE
+                         ${DISP_RESOURCE_JSON}
+                         ${DISP_RESOURCE_HEADER})
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
@@ -76,6 +85,7 @@ add_library(media-resource-calculator SHARED
             ${MEDIA-RESOURCE-CALCULATOR_HEADER}
             ${ADEC_RESOURCE_HEADER}
             ${VDEC_RESOURCE_HEADER}
+            ${DISP_RESOURCE_HEADER}
             ${VDEC_RESOURCE_HEADER_A0A1}
             )
 

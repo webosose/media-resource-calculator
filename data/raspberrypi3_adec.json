@@ -1,11 +1,4 @@
 {
-  "aac6": {
-    "ADEC": 1,
-    "NOTSUPPORTED": 1
-  },
-  "dts": {
-    "ADEC": 2
-  },
   "default": {
     "ADEC": 1
   }

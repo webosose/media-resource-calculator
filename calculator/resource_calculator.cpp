@@ -27,10 +27,12 @@
 #ifdef PLATFORM_RASPBERRYPI3
 #include "adec_resources_raspberrypi3.h"
 #include "vdec_resources_raspberrypi3.h"
+#include "disp_resources_raspberrypi3.h"
 
 #elif PLATFORM_QEMUX86
 #include "adec_resources_qemux86.h"
 #include "vdec_resources_qemux86.h"
+#include "disp_resources_qemux86.h"
 
 #else
 #  error "platform is not specified"
@@ -41,6 +43,7 @@ namespace mrc {
 ResourceCalculator::ResourceCalculator() {
   adecTable.setData(ADEC_RESOURCE);
   vdecTable.setData(VDEC_RESOURCE);
+  displayPlanesTable.setData(DISP_RESOURCE);
 }
 
 ResourceCalculator::~ResourceCalculator() {}
@@ -212,6 +215,47 @@ ResourceList ResourceCalculator::calcMiscResources(
     misc.push_back(Resource(kResourceCPB, 2));
   }
   return misc;
+}
+
+const std::string kResourceDISP = "DISP";
+
+ResourceListOptions ResourceCalculator::calcDisplayPlaneResourceOptions(
+    RenderMode renderMode)
+{
+  ResourceListOptions disp;
+  ResourceList notSupported;
+  notSupported.push_back(Resource("NOTSUPPORTED", 1));
+
+  switch (renderMode) {
+    case kModePunchThrough:
+      // for punch through mode, get the resources needed for
+      // the display resource (could be a list of planes out of
+      // which any one plane will do)
+      {
+        const ResourceListOptions *options = displayPlanesTable.lookup(kResourceDISP);
+        if (!options) {
+          disp.clear();
+          disp.push_back(notSupported);
+        } else {
+          concatResourceListOptions(&disp, options);
+        }
+      }
+      break;
+    case kModeTexture:
+      // texture mode does not need any display planes
+      // nothing to do here
+      break;
+    default:
+      // this is an unexpected value for the renderMode
+      // so we just err out
+      {
+        disp.clear();
+        disp.push_back(notSupported);
+      }
+      break;
+  }
+
+  return disp;
 }
 
 } // namespace mrc

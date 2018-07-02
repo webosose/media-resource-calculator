@@ -48,8 +48,10 @@ add_test(test_video_resource_table test_video_resource_table)
 macro(add_calculator_testcase testname testfile platform platform_flag)
   set(ADEC_RESOURCE_JSON ../data/${platform}_adec.json)
   set(VDEC_RESOURCE_JSON ../data/${platform}_vdec.json)
+  set(DISP_RESOURCE_JSON ../data/${platform}_disp.json)
   set(ADEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/adec_resources_${platform}.h)
   set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_${platform}.h)
+  set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_${platform}.h)
 
   GENERATE_RESOURCE_HEADER(ADEC_RESOURCE
                            ${ADEC_RESOURCE_JSON}
@@ -57,6 +59,9 @@ macro(add_calculator_testcase testname testfile platform platform_flag)
   GENERATE_RESOURCE_HEADER(VDEC_RESOURCE
                            ${VDEC_RESOURCE_JSON}
                            ${VDEC_RESOURCE_HEADER})
+  GENERATE_RESOURCE_HEADER(DISP_RESOURCE
+                           ${DISP_RESOURCE_JSON}
+                           ${DISP_RESOURCE_HEADER})
 
   add_executable(${testname}
                  ${testfile}
@@ -69,6 +74,8 @@ macro(add_calculator_testcase testname testfile platform platform_flag)
                  ../calculator/resource_table.h
                  ../calculator/video_resource_table.cpp
                  ../calculator/video_resource_table.h
+                 ../calculator/display_resource_table.cpp
+                 ../calculator/display_resource_table.h
                  ${ADEC_RESOURCE_HEADER}
                  ${VDEC_RESOURCE_HEADER}
                  should/should.c)
@@ -76,6 +83,13 @@ macro(add_calculator_testcase testname testfile platform platform_flag)
   target_link_libraries(${testname} ${LIBPBNJSON_LDFLAGS})
   add_test(${testname} ${testname})
 endmacro()
+
+add_calculator_testcase(test_raspberrypi3_adec test_raspberrypi3_adec.cpp raspberrypi3 PLATFORM_RASPBERRYPI3)
+
+add_calculator_testcase(test_raspberrypi3_vdec test_raspberrypi3_vdec.cpp raspberrypi3 PLATFORM_RASPBERRYPI3)
+
+# TODO: Add test case for disp resource
+# add_calculator_testcase(test_raspberrypi3_disp test_raspberrypi3_disp.cpp raspberrypi3 PLATFORM_RASPBERRYPI3)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../calculator ${CMAKE_CURRENT_BINARY_DIR}/../tests)
 

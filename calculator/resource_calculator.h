@@ -24,6 +24,7 @@
 #include "resource.h"
 #include "resource_table.h"
 #include "video_resource_table.h"
+#include "display_resource_table.h"
 
 namespace mrc {
 
@@ -59,6 +60,11 @@ public:
     k3DNone,
     k3DSequential,
     k3DMultiStream,
+  };
+
+  enum RenderMode {
+    kModePunchThrough,
+    kModeTexture
   };
 
   // codecs are combination of bitmasks defined in enum VideoCodec.
@@ -100,6 +106,8 @@ public:
 
   virtual ResourceList calcMiscResources(bool useSecureVideoPath, bool useSecureReformatter);
 
+  virtual ResourceListOptions calcDisplayPlaneResourceOptions(RenderMode renderMode);
+
 protected:
   ResourceCalculator();
 
@@ -107,6 +115,7 @@ protected:
 
   ResourceTable adecTable;
   VideoResourceTable vdecTable;
+  DisplayResourceTable displayPlanesTable;
 };
 
 } // namespace mrc
