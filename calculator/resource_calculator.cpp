@@ -29,6 +29,11 @@
 #include "vdec_resources_raspberrypi3.h"
 #include "disp_resources_raspberrypi3.h"
 
+#elif PLATFORM_RASPBERRYPI4
+#include "adec_resources_raspberrypi4.h"
+#include "vdec_resources_raspberrypi4.h"
+#include "disp_resources_raspberrypi4.h"
+
 #elif PLATFORM_QEMUX86
 #include "adec_resources_qemux86.h"
 #include "vdec_resources_qemux86.h"

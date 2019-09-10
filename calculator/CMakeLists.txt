@@ -51,6 +51,18 @@ if(${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi3" OR ${WEBOS_TARGET_MACHINE} ST
   set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_raspberrypi3.h)
   set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_raspberrypi3.h)
 
+elseif(${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi4" OR ${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi4-64")
+  message("Build resource calculator for raspberrypi4")
+
+  add_definitions(-DPLATFORM_RASPBERRYPI4)
+
+  set(ADEC_RESOURCE_JSON ../data/raspberrypi4_adec.json)
+  set(VDEC_RESOURCE_JSON ../data/raspberrypi4_vdec.json)
+  set(DISP_RESOURCE_JSON ../data/raspberrypi4_disp.json)
+  set(ADEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/adec_resources_raspberrypi4.h)
+  set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_raspberrypi4.h)
+  set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_raspberrypi4.h)
+
 elseif(${WEBOS_TARGET_MACHINE} MATCHES "qemux86")
   message("Build resource calculator for qemux86")
 
