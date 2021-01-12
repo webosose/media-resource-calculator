@@ -32,6 +32,7 @@
 #elif PLATFORM_RASPBERRYPI4
 #include "adec_resources_raspberrypi4.h"
 #include "vdec_resources_raspberrypi4.h"
+#include "venc_resources_raspberrypi4.h"
 #include "disp_resources_raspberrypi4.h"
 
 #elif PLATFORM_QEMUX86
@@ -48,6 +49,7 @@ namespace mrc {
 ResourceCalculator::ResourceCalculator() {
   adecTable.setData(ADEC_RESOURCE);
   vdecTable.setData(VDEC_RESOURCE);
+  vencTable.setData(VENC_RESOURCE);
   displayPlanesTable.setData(DISP_RESOURCE);
 }
 
@@ -159,6 +161,37 @@ ResourceListOptions ResourceCalculator::calcVdecResourceOptions(
   }
 
   return vdec;
+}
+
+ResourceListOptions ResourceCalculator::calcVencResourceOptions(
+    VideoCodecs codecs,
+    int width,
+    int height,
+    int frameRate) {
+  ResourceListOptions venc;
+  ResourceList notSupported;
+  notSupported.push_back(Resource("NOTSUPPORTED", 1));
+
+  for (int i = 0; codecs >> i != 0; i++) {
+    int codec = 1 << i;
+    if (!(codec & codecs)) continue;
+
+    const ResourceListOptions *options = vencTable.lookup(
+        videoCodecToString(static_cast<VideoCodec>(codec)),
+        width,
+        height,
+        frameRate);
+
+    if (!options) {
+      venc.clear();
+      venc.push_back(notSupported);
+      return venc;
+    }
+
+    concatResourceListOptions(&venc, options);
+  }
+
+  return venc;
 }
 
 ResourceList ResourceCalculator::calcAdecResources(

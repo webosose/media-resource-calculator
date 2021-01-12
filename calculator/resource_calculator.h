@@ -86,6 +86,12 @@ public:
       ScanType scanType,
       _3DType _3dType);
 
+  virtual ResourceListOptions calcVencResourceOptions(
+      VideoCodecs codecs,
+      int width,
+      int height,
+      int frameRate);
+
   enum AudioCodec {
     kAudioEtc = (1 << 0),
     kAudioMPEG = (1 << 1),
@@ -115,6 +121,7 @@ protected:
 
   ResourceTable adecTable;
   VideoResourceTable vdecTable;
+  VideoResourceTable vencTable;
   DisplayResourceTable displayPlanesTable;
 };
 

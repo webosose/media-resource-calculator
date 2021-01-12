@@ -58,9 +58,11 @@ elseif(${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi4" OR ${WEBOS_TARGET_MACHINE
 
   set(ADEC_RESOURCE_JSON ../data/raspberrypi4_adec.json)
   set(VDEC_RESOURCE_JSON ../data/raspberrypi4_vdec.json)
+  set(VENC_RESOURCE_JSON ../data/raspberrypi4_venc.json)
   set(DISP_RESOURCE_JSON ../data/raspberrypi4_disp.json)
   set(ADEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/adec_resources_raspberrypi4.h)
   set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_raspberrypi4.h)
+  set(VENC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/venc_resources_raspberrypi4.h)
   set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_raspberrypi4.h)
 
 elseif(${WEBOS_TARGET_MACHINE} MATCHES "qemux86")
@@ -86,6 +88,9 @@ GENERATE_RESOURCE_HEADER(ADEC_RESOURCE
 GENERATE_RESOURCE_HEADER(VDEC_RESOURCE
                          ${VDEC_RESOURCE_JSON}
                          ${VDEC_RESOURCE_HEADER})
+GENERATE_RESOURCE_HEADER(VENC_RESOURCE
+                         ${VENC_RESOURCE_JSON}
+                         ${VENC_RESOURCE_HEADER})
 GENERATE_RESOURCE_HEADER(DISP_RESOURCE
                          ${DISP_RESOURCE_JSON}
                          ${DISP_RESOURCE_HEADER})
@@ -97,6 +102,7 @@ add_library(media-resource-calculator SHARED
             ${MEDIA-RESOURCE-CALCULATOR_HEADER}
             ${ADEC_RESOURCE_HEADER}
             ${VDEC_RESOURCE_HEADER}
+            ${VENC_RESOURCE_HEADER}
             ${DISP_RESOURCE_HEADER}
             ${VDEC_RESOURCE_HEADER_A0A1}
             )
