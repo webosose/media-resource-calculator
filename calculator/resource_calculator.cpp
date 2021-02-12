@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008-2018 LG Electronics, Inc.
+ * Copyright (c) 2008-2021 LG Electronics, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@
 #elif PLATFORM_QEMUX86
 #include "adec_resources_qemux86.h"
 #include "vdec_resources_qemux86.h"
+#include "venc_resources_qemux86.h"
 #include "disp_resources_qemux86.h"
 
 #else

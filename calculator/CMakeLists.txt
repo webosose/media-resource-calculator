@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2018 LG Electronics, Inc.
+# Copyright (c) 2008-2021 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -72,9 +72,11 @@ elseif(${WEBOS_TARGET_MACHINE} MATCHES "qemux86")
 
   set(ADEC_RESOURCE_JSON ../data/qemux86_adec.json)
   set(VDEC_RESOURCE_JSON ../data/qemux86_vdec.json)
+  set(VENC_RESOURCE_JSON ../data/qemux86_venc.json)
   set(DISP_RESOURCE_JSON ../data/qemux86_disp.json)
   set(ADEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/adec_resources_qemux86.h)
   set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_qemux86.h)
+  set(VENC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/venc_resources_qemux86.h)
   set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_qemux86.h)
 
 else()
