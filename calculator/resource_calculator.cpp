@@ -27,6 +27,7 @@
 #ifdef PLATFORM_RASPBERRYPI3
 #include "adec_resources_raspberrypi3.h"
 #include "vdec_resources_raspberrypi3.h"
+#include "venc_resources_raspberrypi3.h"
 #include "disp_resources_raspberrypi3.h"
 
 #elif PLATFORM_RASPBERRYPI4

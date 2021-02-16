@@ -46,9 +46,11 @@ if(${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi3" OR ${WEBOS_TARGET_MACHINE} ST
 
   set(ADEC_RESOURCE_JSON ../data/raspberrypi3_adec.json)
   set(VDEC_RESOURCE_JSON ../data/raspberrypi3_vdec.json)
+  set(VENC_RESOURCE_JSON ../data/raspberrypi3_venc.json)
   set(DISP_RESOURCE_JSON ../data/raspberrypi3_disp.json)
   set(ADEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/adec_resources_raspberrypi3.h)
   set(VDEC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/vdec_resources_raspberrypi3.h)
+  set(VENC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/venc_resources_raspberrypi3.h)
   set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_raspberrypi3.h)
 
 elseif(${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi4" OR ${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi4-64")
