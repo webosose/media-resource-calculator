@@ -67,7 +67,7 @@ elseif(${WEBOS_TARGET_MACHINE} STREQUAL "raspberrypi4" OR ${WEBOS_TARGET_MACHINE
   set(VENC_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/venc_resources_raspberrypi4.h)
   set(DISP_RESOURCE_HEADER ${CMAKE_CURRENT_BINARY_DIR}/disp_resources_raspberrypi4.h)
 
-elseif(${WEBOS_TARGET_MACHINE} MATCHES "qemux86")
+elseif(${WEBOS_TARGET_MACHINE} MATCHES "qemux86" OR ${WEBOS_TARGET_MACHINE} MATCHES "qemux86-64")
   message("Build resource calculator for qemux86")
 
   add_definitions(-DPLATFORM_QEMUX86)
