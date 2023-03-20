@@ -53,8 +53,8 @@ VideoInfo::VideoInfo(std::string videoInfoString)
     } else if ((delim = token.find('p')) != std::string::npos ||
         (delim = token.find('P')) != std::string::npos) {
       frameRate = atoi(token.substr(0, delim).c_str());
-    } else if ((delim = token.find('i') != std::string::npos) ||
-        (delim = token.find('I') != std::string::npos)) {
+    } else if ((delim = token.find('i')) != std::string::npos ||
+        (delim = token.find('I')) != std::string::npos) {
       frameRate = atoi(token.substr(0, delim).c_str()) / 2;
     } else {
       // unhandled expressions should be notified
