@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2018 LG Electronics, Inc.
+# Copyright (c) 2008-2024 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ project(MEDIA-RESOURCE-CALCULATOR)
 
 include(webOS/webOS)
 webos_modules_init(1 1 1 QUALIFIER RC6)
-webos_distro_variant_dep()
 
 include(FindPkgConfig)
 
