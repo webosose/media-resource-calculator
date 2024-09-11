@@ -71,7 +71,7 @@ void concatResourceListOptions(ResourceListOptions *dst,
     for (j = src->begin(); j != src->end(); j++) {
       ResourceList res = *i;
       concatResourceList(&res, &*j);
-      newOptions.push_back(res);
+      newOptions.push_back(std::move(res));
     }
   }
 

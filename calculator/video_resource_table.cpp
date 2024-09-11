@@ -121,7 +121,7 @@ static CodecTable createCodecTable(const pj::JValue &data) {
     }
 
     if (ic == ret.end()) {
-      ret.push_back(pair);
+      ret.push_back(std::move(pair));
     }
   }
 

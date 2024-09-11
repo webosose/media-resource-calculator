@@ -155,7 +155,7 @@ ResourceListOptions ResourceCalculator::calcVdecResourceOptions(
 
     if (!options) {
       vdec.clear();
-      vdec.push_back(notSupported);
+      vdec.push_back(std::move(notSupported));
       return vdec;
     }
 
@@ -186,7 +186,7 @@ ResourceListOptions ResourceCalculator::calcVencResourceOptions(
 
     if (!options) {
       venc.clear();
-      venc.push_back(notSupported);
+      venc.push_back(std::move(notSupported));
       return venc;
     }
 
@@ -275,7 +275,7 @@ ResourceListOptions ResourceCalculator::calcDisplayPlaneResourceOptions(
         const ResourceListOptions *options = displayPlanesTable.lookup(kResourceDISP);
         if (!options) {
           disp.clear();
-          disp.push_back(notSupported);
+          disp.push_back(std::move(notSupported));
         } else {
           concatResourceListOptions(&disp, options);
         }
