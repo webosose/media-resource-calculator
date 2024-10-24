@@ -290,7 +290,7 @@ ResourceListOptions ResourceCalculator::calcDisplayPlaneResourceOptions(
       // so we just err out
       {
         disp.clear();
-        disp.push_back(notSupported);
+        disp.push_back(std::move(notSupported));
       }
       break;
   }
